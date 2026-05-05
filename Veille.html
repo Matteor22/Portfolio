@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Veille Technologique - Portfolio de Mattéo Varlet</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <style>
+        .veille-article {
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid var(--glass-border);
+            padding: 40px;
+            border-radius: 16px;
+            margin-bottom: 40px;
+            box-shadow: var(--shadow-soft);
+        }
+        .veille-article h2 {
+            color: var(--accent-primary);
+            font-size: 2em;
+            margin-bottom: 10px;
+        }
+        .veille-article h3 {
+            color: var(--text-primary);
+            margin-top: 25px;
+            margin-bottom: 10px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding-bottom: 5px;
+        }
+        .veille-article p, .veille-article li {
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+        .veille-article ul {
+            margin-left: 20px;
+            margin-bottom: 20px;
+        }
+        .source-links {
+            margin-top: 30px;
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <ul class="menu">
+            <li><a href="index.html">Accueil</a></li>
+            <li>
+                <a href="#">Mes Réalisations</a>
+                <ul>
+                    <li><a href="tp.html">TPs</a></li>
+                    <li><a href="stages.html">Stages</a></li>
+                </ul>
+            </li>
+            <li><a href="cv.html">CV</a></li>
+            <li><a href="lm.html">Lettre de motivations</a></li>
+            <li><a href="veille.html">Veille</a></li> 
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+    </nav>
+
+    <main class="container" style="padding-bottom: 100px;">
+        <h1>Veille Technologique</h1>
+        <p style="text-align: center; color: var(--text-secondary); margin-bottom: 50px; font-size: 1.2em;">
+            Dans le cadre de mon BTS SIO, je me tiens informé des dernières avancées technologiques. Voici mes deux sujets d'étude principaux.
+        </p>
+
+        <!-- SUJET 1 -->
+        <article class="veille-article">
+            <h2>Sujet 1 : L'Intelligence Artificielle en Cybersécurité</h2>
+            <p style="font-size: 1.2em; font-style: italic; color: #fff;">« Comment l'IA redéfinit-elle les règles du jeu entre les cyber-attaquants et les défenseurs en 2024 ? »</p>
+            
+            <h3>Une arme à double tranchant</h3>
+            <p>Aujourd'hui, l'Intelligence Artificielle (IA) n'est plus seulement un outil d'assistance, c'est le cœur de la guerre informatique. Pour les <strong>défenseurs (Blue Teams)</strong>, l'IA est devenue indispensable. Elle permet d'analyser des téraoctets de logs en temps réel, de repérer des comportements anormaux impossibles à détecter manuellement, et d'isoler automatiquement des systèmes compromis.</p>
+            <p>Cependant, les <strong>attaquants (Red Teams / Hackers)</strong> utilisent la même technologie. L'IA générative leur permet de créer des malwares polymorphes (qui changent de code à chaque infection pour tromper les antivirus), de rédiger des emails de phishing ultra-ciblés, et de générer des "Deepfakes" vocaux pour usurper l'identité de dirigeants d'entreprise.</p>
+
+            <h3>Tendances clés actuelles</h3>
+            <ul>
+                <li><strong>Guerre d'algorithmes :</strong> La sécurité informatique est désormais une course entre l'IA de l'attaquant et l'IA du défenseur.</li>
+                <li><strong>Small Language Models (SLM) :</strong> Face aux risques de fuites de données liés aux grosses IA publiques (comme ChatGPT), les entreprises déploient de petits modèles d'IA privés, spécialisés uniquement dans l'analyse de sécurité.</li>
+                <li><strong>Injection de Prompt :</strong> L'apparition de nouvelles failles où les pirates attaquent directement les bases de données de l'IA pour la manipuler.</li>
+            </ul>
+
+            <div class="source-links">
+                <a href="https://www.ibm.com/fr-fr/topics/artificial-intelligence-cybersecurity" target="_blank" class="btn btn-outline">Article IBM Security</a>
+                <a href="https://www.weforum.org/" target="_blank" class="btn btn-outline">Rapport World Economic Forum</a>
+            </div>
+        </article>
+
+        <!-- SUJET 2 -->
+        <article class="veille-article">
+            <h2>Sujet 2 : L'évolution de l'infrastructure (Docker & Kubernetes)</h2>
+            <p style="font-size: 1.2em; font-style: italic; color: #fff;">« Pourquoi Kubernetes devient-il le nouveau standard absolu de l'infrastructure au détriment du moteur Docker traditionnel ? »</p>
+            
+            <h3>De la conteneurisation à l'orchestration</h3>
+            <p>La technologie <strong>Docker</strong> a révolutionné l'informatique en standardisant la création de conteneurs. Cependant, pour déployer ces conteneurs à très grande échelle (Cloud), l'outil Docker seul n'est plus suffisant. C'est ici que <strong>Kubernetes (K8s)</strong> s'est imposé comme l'outil d'orchestration incontournable.</p>
+            <p>En 2024, Kubernetes est littéralement devenu "l'infrastructure de l'infrastructure". Il gère aujourd'hui non seulement les applications classiques, mais aussi les bases de données, et forme le socle essentiel pour faire tourner de lourds modèles d'Intelligence Artificielle qui requièrent une puissance de calcul élastique (GPU).</p>
+
+            <h3>Tendances clés actuelles</h3>
+            <ul>
+                <li><strong>Changement de moteur :</strong> Dans les clusters de production professionnels, le logiciel Docker a été remplacé par des moteurs plus légers et sécurisés comme <em>containerd</em> ou <em>CRI-O</em>, même si le format des images reste le même.</li>
+                <li><strong>L'abstraction pour les développeurs :</strong> Kubernetes étant très complexe, la grande tendance est au "Platform Engineering". On crée des portails internes pour que les développeurs puissent déployer leurs applications sans même savoir que Kubernetes tourne en arrière-plan.</li>
+                <li><strong>Edge Computing :</strong> Les conteneurs sortent des data-centers pour s'installer à la périphérie (Edge), directement sur des objets connectés via des versions allégées comme <em>K3s</em>.</li>
+            </ul>
+
+            <div class="source-links">
+                <a href="https://kubernetes.io/blog/" target="_blank" class="btn btn-outline">Blog Officiel Kubernetes</a>
+                <a href="https://www.cncf.io/" target="_blank" class="btn btn-outline">Cloud Native Computing Foundation</a>
+            </div>
+        </article>
+
+    </main>
+
+    <!-- Effet de vague (Eau/Rivière) -->
+    <div class="water-waves">
+        <svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
+            <defs>
+                <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
+            </defs>
+            <g class="parallax">
+                <use xlink:href="#gentle-wave" x="48" y="0" fill="rgba(0, 210, 255, 0.7)" />
+                <use xlink:href="#gentle-wave" x="48" y="3" fill="rgba(0, 210, 255, 0.5)" />
+                <use xlink:href="#gentle-wave" x="48" y="5" fill="rgba(0, 210, 255, 0.3)" />
+                <use xlink:href="#gentle-wave" x="48" y="7" fill="rgba(0, 210, 255, 0.1)" />
+            </g>
+        </svg>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Mattéo Varlet | Étudiant en BTS SIO</p>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+</body>
+</html>

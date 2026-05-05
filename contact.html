@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Contact - Portfolio de Mattéo Varlet</title>
+    <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+    <nav>
+        <ul class="menu">
+            <li><a href="index.html">Accueil</a></li> 
+            <li>
+                <a href="#">Mes Réalisations</a>
+                <ul>
+                    <li><a href="tp.html">TPs</a></li>
+                    <li><a href="stages.html">Stages</a></li>
+                </ul>
+            </li>
+            <li><a href="cv.html">CV</a></li>
+            <li><a href="lm.html">Lettre de motivations</a></li>
+            <li><a href="veille.html">Veille</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+    </nav>
+
+    <main class="contact-section">
+        <div class="container">
+            <h1>Me Contacter</h1>
+            <p style="text-align: center; color: var(--text-secondary); margin-bottom: 40px; font-size: 1.2em;">N'hésitez pas à me contacter pour toute question, opportunité ou simplement pour discuter !</p>
+
+            <form action="mailto:matteo.varlet@saint-remi.net" method="post" enctype="text/plain" class="contact-form">
+                <div class="form-group">
+                    <label for="nom">Nom :</label>
+                    <input type="text" id="nom" name="nom" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email :</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="sujet">Sujet :</label>
+                    <input type="text" id="sujet" name="sujet">
+                </div>
+                <div class="form-group">
+                    <label for="message">Message :</label>
+                    <textarea id="message" name="message" rows="6" required></textarea>
+                </div>
+                <div style="text-align: center;">
+                    <button type="submit" class="btn btn-primary" style="width: 100%;">Envoyer le message</button>
+                </div>
+            </form>
+
+            <div class="social-links">
+                <h2 style="font-size: 1.5em; margin-bottom: 20px;">Retrouvez-moi aussi sur :</h2>
+                <ul>
+                    <li><a href="https://www.linkedin.com/in/matteo-varlet-6823b7259/?originalSubdomain=fr" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
+                    <li><a href="https://github.com/Matteor22" target="_blank" rel="noopener noreferrer">GitHub</a></li>
+                </ul>
+            </div>
+        </div>
+    </main>
+
+    <!-- Effet de vague (Eau/Rivière) -->
+    <div class="water-waves">
+        <svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
+            <defs>
+                <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
+            </defs>
+            <g class="parallax">
+                <use xlink:href="#gentle-wave" x="48" y="0" fill="rgba(0, 210, 255, 0.7)" />
+                <use xlink:href="#gentle-wave" x="48" y="3" fill="rgba(0, 210, 255, 0.5)" />
+                <use xlink:href="#gentle-wave" x="48" y="5" fill="rgba(0, 210, 255, 0.3)" />
+                <use xlink:href="#gentle-wave" x="48" y="7" fill="rgba(0, 210, 255, 0.1)" />
+            </g>
+        </svg>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Mattéo Varlet | Étudiant en BTS SIO</p>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+</body>
+</html>

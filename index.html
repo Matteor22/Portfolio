@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Accueil - Portfolio de Mattéo Varlet</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+
+    <nav>
+        <ul class="menu">
+            <li><a href="index.html">Accueil</a></li>
+            <li>
+                <a href="#">Mes Réalisations</a>
+                <ul>
+                    <li><a href="tp.html">TPs</a></li>
+                    <li><a href="stages.html">Stages</a></li>
+                </ul>
+            </li>
+            <li><a href="cv.html">CV</a></li>
+            <li><a href="lm.html">Lettre de motivations</a></li>
+            <li><a href="veille.html">Veille</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <section class="hero container">
+            <div class="hero-content">
+                <h1>Mattéo Varlet</h1>
+                <p>Étudiant en BTS SIO (Services Informatiques aux Organisations) - Profil Tech & Développement</p>
+                <div class="hero-actions">
+                    <a href="tp.html" class="btn btn-primary">Voir mes TPs</a>
+                    <a href="cv.html" class="btn btn-outline">Consulter mon CV</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="competences" class="container" style="margin-bottom: 60px;">
+            <h2 style="text-align: center; margin-bottom: 40px;">Mes Compétences</h2>
+            <div class="tp-grid" style="grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));">
+                
+                <article class="tp-item" style="text-align: center;">
+                    <div style="font-size: 3em; margin-bottom: 15px;">🌐</div>
+                    <h3>Développement Web</h3>
+                    <p>Création d'interfaces responsives avec <strong>HTML5</strong>, <strong>CSS3</strong> et <strong>JavaScript</strong>.</p>
+                </article>
+
+                <article class="tp-item" style="text-align: center;">
+                    <div style="font-size: 3em; margin-bottom: 15px;">⚙️</div>
+                    <h3>Systèmes & Réseaux</h3>
+                    <p>Administration de machines virtuelles (VirtualBox, Windows, Linux) et commandes <strong>CMD / PowerShell</strong>.</p>
+                </article>
+
+                <article class="tp-item" style="text-align: center;">
+                    <div style="font-size: 3em; margin-bottom: 15px;">💻</div>
+                    <h3>Hardware</h3>
+                    <p>Architecture matérielle, montage de configurations sur-mesure et analyse de besoins.</p>
+                </article>
+
+            </div>
+        </section>
+    </main>
+
+    <!-- Effet de vague (Eau/Rivière) -->
+    <div class="water-waves">
+        <svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
+            <defs>
+                <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
+            </defs>
+            <g class="parallax">
+                <use xlink:href="#gentle-wave" x="48" y="0" fill="rgba(0, 210, 255, 0.7)" />
+                <use xlink:href="#gentle-wave" x="48" y="3" fill="rgba(0, 210, 255, 0.5)" />
+                <use xlink:href="#gentle-wave" x="48" y="5" fill="rgba(0, 210, 255, 0.3)" />
+                <use xlink:href="#gentle-wave" x="48" y="7" fill="rgba(0, 210, 255, 0.1)" />
+            </g>
+        </svg>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Mattéo Varlet | Étudiant en BTS SIO</p>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
