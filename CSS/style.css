@@ -1,0 +1,702 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap');
+
+/* ========================================================== */
+/* 1. VARIABLES ET THÈME (GLASSMORPHISM / TECH)               */
+/* ========================================================== */
+
+:root {
+    /* Couleurs principales (Noir, Bleu Ciel, Blanc) */
+    --accent-primary: #00d2ff;      /* Bleu Ciel éclatant */
+    --accent-secondary: #ffffff;    /* Blanc */
+    
+    /* Fonds Glassmorphism (Noir) */
+    --glass-bg: rgba(10, 10, 15, 0.65);
+    --glass-bg-hover: rgba(25, 25, 30, 0.8);
+    --glass-border: rgba(255, 255, 255, 0.1);
+    
+    /* Texte */
+    --text-primary: #ffffff;
+    --text-secondary: #b3b3b3;
+    
+    /* Ombres */
+    --shadow-soft: 0 8px 32px 0 rgba(0, 0, 0, 0.5);
+    --shadow-glow: 0 0 15px rgba(0, 210, 255, 0.4);
+}
+
+/* ========================================================== */
+/* 2. GLOBAL & TYPOGRAPHIE                                    */
+/* ========================================================== */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Outfit', sans-serif;
+    line-height: 1.6;
+    color: var(--text-primary);
+    background-color: #050508; /* Fond noir profond de secours */
+    
+    /* Paramètres pour le GIF en arrière-plan */
+    background-image: url('../Images/fond.gif'); /* Mettez votre GIF ici */
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Couche d'assombrissement par dessus le GIF pour la lisibilité */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0, 0, 0, 0.3); /* Noir beaucoup moins opaque */
+    backdrop-filter: blur(8px);     /* Effet de flou sur le fond */
+    -webkit-backdrop-filter: blur(8px);
+    z-index: -1;
+}
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+h1, h2, h3, h4 {
+    font-weight: 800;
+}
+
+main h1 {
+    font-size: 3em;
+    margin-top: 40px;
+    margin-bottom: 20px;
+    text-align: center;
+    background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: var(--shadow-glow);
+}
+
+main h2 {
+    color: var(--text-primary);
+    border-bottom: 2px solid var(--accent-primary);
+    padding-bottom: 10px;
+    margin-top: 50px;
+    margin-bottom: 30px;
+    font-size: 2em;
+}
+
+hr {
+    border: none;
+    height: 1px;
+    background: var(--glass-border);
+    margin: 40px 0;
+}
+
+/* ========================================================== */
+/* 3. NAVIGATION (GLASSMORPHISM)                              */
+/* ========================================================== */
+
+nav {
+    background: var(--glass-bg);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--glass-border);
+    padding: 15px 0;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: var(--shadow-soft);
+}
+
+nav ul.menu {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+nav ul li {
+    position: relative;
+}
+
+nav ul li a {
+    color: var(--text-primary);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1.1em;
+    padding: 8px 16px;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+nav ul li a:hover {
+    color: var(--accent-primary);
+    background: rgba(255, 255, 255, 0.05);
+    text-shadow: 0 0 8px rgba(0, 210, 255, 0.6);
+}
+
+/* Sous-menu */
+nav ul li ul {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%) translateY(10px);
+    min-width: 180px;
+    background: var(--glass-bg);
+    backdrop-filter: blur(15px);
+    border: 1px solid var(--glass-border);
+    border-radius: 12px;
+    padding: 10px 0;
+    box-shadow: var(--shadow-soft);
+    opacity: 0;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+nav ul li:hover > ul {
+    display: flex;
+    flex-direction: column;
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+}
+
+nav ul li ul li {
+    width: 100%;
+}
+
+nav ul li ul li a {
+    padding: 10px 20px;
+    display: block;
+    font-size: 1em;
+    text-align: center;
+}
+
+nav ul li ul li a:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+/* ========================================================== */
+/* 4. ACCUEIL (HERO SECTION)                                  */
+/* ========================================================== */
+
+.hero {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    min-height: 80vh;
+}
+
+.hero-content {
+    background: var(--glass-bg);
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--glass-border);
+    padding: 60px 40px;
+    border-radius: 24px;
+    box-shadow: var(--shadow-soft);
+    max-width: 800px;
+    animation: fadeIn 1s ease-out forwards;
+}
+
+.hero h1 {
+    font-size: 4em;
+    margin-top: 0;
+    margin-bottom: 20px;
+}
+
+.hero p {
+    font-size: 1.4em;
+    color: var(--text-secondary);
+    margin-bottom: 40px;
+}
+
+.hero-actions {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* ========================================================== */
+/* 5. BOUTONS                                                 */
+/* ========================================================== */
+
+.btn {
+    display: inline-block;
+    padding: 12px 24px;
+    font-size: 1.1em;
+    font-weight: 600;
+    text-decoration: none;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.btn:active {
+    transform: translateY(2px) scale(0.96);
+}
+
+.btn-primary {
+    background: linear-gradient(45deg, var(--accent-primary), var(--accent-secondary));
+    color: #000;
+    font-weight: 800;
+    box-shadow: 0 4px 15px rgba(0, 210, 255, 0.3);
+}
+
+.btn-primary:hover {
+    transform: translateY(-4px) scale(1.03);
+    box-shadow: 0 8px 25px rgba(0, 210, 255, 0.6);
+}
+
+.btn-outline {
+    background: transparent;
+    color: var(--text-primary);
+    border: 2px solid var(--accent-primary);
+}
+
+.btn-outline:hover {
+    background: var(--accent-primary);
+    color: #000;
+    transform: translateY(-4px) scale(1.03);
+    box-shadow: 0 8px 25px rgba(0, 210, 255, 0.6);
+}
+
+.btn-icon {
+    margin-left: 8px;
+}
+
+/* ========================================================== */
+/* 6. CARTES ET MODULES (TPs, STAGES)                         */
+/* ========================================================== */
+
+.module-header {
+    border-bottom: 1px solid rgba(0, 210, 255, 0.3);
+    padding-bottom: 15px;
+    margin-bottom: 30px;
+    margin-top: 70px;
+}
+
+.module-header h2 {
+    font-size: 2em;
+    color: var(--accent-primary);
+    margin: 0 0 5px 0;
+}
+
+.module-header p {
+    color: var(--text-secondary);
+    font-size: 1.1em;
+    margin: 0;
+}
+
+.tp-grid {
+    display: grid;
+    grid-template-columns: 1fr; /* Mobile par défaut */
+    gap: 30px;
+    margin-bottom: 40px;
+}
+
+@media (min-width: 768px) {
+    .tp-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (min-width: 1024px) {
+    .tp-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+.tp-item, .en-construction {
+    background: var(--glass-bg);
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--glass-border);
+    border-radius: 16px;
+    padding: 30px;
+    box-shadow: var(--shadow-soft);
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+    display: flex;
+    flex-direction: column;
+}
+
+.tp-item:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-glow);
+    border-color: rgba(0, 210, 255, 0.3);
+}
+
+.tp-item h3 {
+    color: var(--text-primary);
+    font-size: 1.5em;
+    margin-bottom: 15px;
+}
+
+.technologies {
+    color: var(--accent-primary);
+    font-size: 0.9em;
+    margin-bottom: 15px;
+    font-weight: 600;
+}
+
+.tp-item p {
+    color: var(--text-secondary);
+    flex-grow: 1;
+    margin-bottom: 25px;
+}
+
+.tp-actions {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+/* --- Vue en Liste (Pour les TPs additionnels) --- */
+.tp-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-bottom: 40px;
+}
+
+.tp-list-item {
+    background: var(--glass-bg);
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--glass-border);
+    border-radius: 12px;
+    padding: 15px 25px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: all 0.3s ease;
+}
+
+.tp-list-item:hover {
+    background: var(--glass-bg-hover);
+    border-color: var(--accent-primary);
+    transform: translateX(5px);
+    box-shadow: -5px 0 15px rgba(0, 210, 255, 0.2);
+}
+
+.tp-list-title {
+    font-size: 1.2em;
+    font-weight: 600;
+    color: var(--text-primary);
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.tp-list-badge {
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--accent-primary);
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 0.8em;
+    font-weight: 800;
+}
+
+.tp-list-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.tp-list-actions .btn {
+    padding: 8px 15px;
+    font-size: 0.9em;
+}
+
+/* ========================================================== */
+/* 7. PAGE CONTACT                                            */
+/* ========================================================== */
+
+.contact-section {
+    padding: 60px 0;
+}
+
+.contact-form {
+    background: var(--glass-bg);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid var(--glass-border);
+    padding: 40px;
+    border-radius: 16px;
+    max-width: 700px;
+    margin: 0 auto 50px;
+    box-shadow: var(--shadow-soft);
+    animation: slideUpFade 0.8s ease-out forwards;
+}
+
+@keyframes slideUpFade {
+    0% { opacity: 0; transform: translateY(30px); }
+    100% { opacity: 1; transform: translateY(0); }
+}
+
+.form-group {
+    margin-bottom: 25px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 12px 15px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    color: var(--text-primary);
+    font-family: inherit;
+    font-size: 1em;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.form-group input:hover,
+.form-group textarea:hover {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(0, 210, 255, 0.3);
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--accent-primary);
+    box-shadow: 0 0 15px rgba(0, 210, 255, 0.4);
+    background: rgba(255, 255, 255, 0.15);
+    transform: scale(1.02);
+}
+
+.social-links {
+    text-align: center;
+    background: var(--glass-bg);
+    padding: 30px;
+    border-radius: 16px;
+    border: 1px solid var(--glass-border);
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+.social-links h2 {
+    margin-top: 0;
+    border-bottom: none;
+}
+
+.social-links ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.social-links ul li a {
+    display: inline-block;
+    padding: 10px 20px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--glass-border);
+    border-radius: 8px;
+    color: var(--text-primary);
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.social-links ul li a:hover {
+    background: var(--accent-primary);
+    border-color: var(--accent-primary);
+    color: #0f0f13;
+    transform: translateY(-3px);
+}
+
+/* ========================================================== */
+/* 8. MODALE PDF & FOOTER                                     */
+/* ========================================================== */
+
+#pdf-viewer {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(8px);
+    z-index: 2000;
+    display: none;
+    justify-content: center;
+    align-items: center;
+}
+
+#pdf-iframe {
+    width: 90%;
+    height: 85%;
+    border: 1px solid var(--glass-border);
+    border-radius: 12px;
+    box-shadow: var(--shadow-glow);
+    background: #fff; /* Fond blanc pour le PDF */
+}
+
+#close-pdf {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    color: var(--text-primary);
+    font-size: 40px;
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+#close-pdf:hover {
+    color: var(--accent-primary);
+}
+
+footer {
+    background: var(--glass-bg);
+    border-top: 1px solid var(--glass-border);
+    text-align: center;
+    padding: 20px 0;
+    margin-top: auto;
+    color: var(--text-secondary);
+}
+
+/* ========================================================== */
+/* 9. RESPONSIVE                                              */
+/* ========================================================== */
+
+@media (max-width: 768px) {
+    .hero h1 { font-size: 2.5em; }
+    .hero p { font-size: 1.1em; }
+    
+    nav ul.menu { flex-direction: column; gap: 10px; }
+    nav ul li ul { position: static; transform: none; box-shadow: none; border: none; opacity: 1; display: none; }
+    nav ul li:hover > ul { display: block; }
+    
+    .hero-actions { flex-direction: column; }
+    
+    .contact-form, .social-links { padding: 20px; }
+    .tp-actions { flex-direction: column; }
+}
+
+/* ========================================================== */
+/* EFFET D'EAU / RIVIÈRE (ANIMATION SVG)                      */
+/* ========================================================== */
+
+.water-waves {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 15vh;
+    min-height: 100px;
+    max-height: 150px;
+    z-index: -1;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+.waves {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    margin-bottom: -7px; 
+}
+
+.parallax > use {
+    animation: move-forever 25s cubic-bezier(.55,.5,.45,.5) infinite;
+}
+.parallax > use:nth-child(1) { animation-delay: -2s; animation-duration: 7s; }
+.parallax > use:nth-child(2) { animation-delay: -3s; animation-duration: 10s; }
+.parallax > use:nth-child(3) { animation-delay: -4s; animation-duration: 13s; }
+.parallax > use:nth-child(4) { animation-delay: -5s; animation-duration: 20s; }
+
+@keyframes move-forever {
+    0% { transform: translate3d(-90px,0,0); }
+    100% { transform: translate3d(85px,0,0); }
+}
+
+/* ========================================================== */
+/* LE KAYAK ANIMÉ                                             */
+/* ========================================================== */
+
+.kayaker {
+    position: absolute;
+    bottom: 40%; 
+    left: -10%;
+    font-size: 3em;
+    z-index: 10;
+    animation: sailKayak 25s linear infinite, bobbing 2s ease-in-out infinite;
+    filter: drop-shadow(0 5px 5px rgba(0,0,0,0.5));
+}
+
+@keyframes sailKayak {
+    0% { left: -10%; transform: scaleX(1); }
+    45% { left: 110%; transform: scaleX(1); }
+    50% { left: 110%; transform: scaleX(-1); } /* Demi-tour */
+    95% { left: -10%; transform: scaleX(-1); }
+    100% { left: -10%; transform: scaleX(1); }
+}
+
+@keyframes bobbing {
+    0%, 100% { margin-bottom: 0; transform: rotate(0deg); }
+    50% { margin-bottom: 15px; transform: rotate(-5deg); }
+}
+
+/* ========================================================== */
+/* MÉTÉO : ORAGE ET PLUIE                                     */
+/* ========================================================== */
+
+.storm-mode::before {
+    background: rgba(0, 0, 0, 0.6); /* Ciel plus sombre pendant l'orage */
+    backdrop-filter: blur(5px);
+}
+
+.storm-mode::after {
+    content: '';
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: white;
+    z-index: 9999;
+    opacity: 0;
+    pointer-events: none;
+    animation: lightning 12s infinite;
+}
+
+@keyframes lightning {
+    0%, 91%, 94%, 97%, 100% { opacity: 0; }
+    92% { opacity: 0.8; }
+    95% { opacity: 0.5; }
+    96% { opacity: 0.9; }
+}
+
+.storm-mode {
+    /* Pluie avec un repeating linear gradient sur le body */
+    background-image: 
+        repeating-linear-gradient(15deg, transparent, transparent 20px, rgba(255,255,255,0.15) 20px, rgba(255,255,255,0.15) 22px),
+        url('../Images/fond.gif');
+    background-size: 150px 150px, cover;
+    animation: rainDrop 0.6s linear infinite;
+}
+
+@keyframes rainDrop {
+    from { background-position: 0 0, center; }
+    to { background-position: -150px 150px, center; }
+}
