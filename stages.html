@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Stages - Portfolio de Mattéo Varlet</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        /* ========================================================
+           STYLES PAGE STAGES – DESIGN GLASSMORPHISM CARRÉ & ÉPURÉ
+           ======================================================== */
+
+        .stages-header {
+            text-align: center;
+            padding: 35px 0 25px;
+            animation: fadeInDown 0.8s ease-out;
+        }
+
+        .stages-header h1 {
+            font-size: 2.8rem;
+            margin-bottom: 12px;
+            color: var(--text-primary);
+        }
+
+        .stages-header p {
+            color: var(--text-secondary);
+            font-size: 1.15rem;
+            max-width: 750px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        /* ─── CARTE PRINCIPALE DU STAGE ─── */
+        .stage-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            padding: 45px 50px;
+            margin: 30px auto 60px;
+            box-shadow: var(--shadow-glow);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stage-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 6px; height: 100%;
+            background: linear-gradient(180deg, var(--accent-primary), #3a7bd5);
+            border-radius: 24px 0 0 24px;
+        }
+
+        .stage-meta-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
+        .stage-badges {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .stage-pill {
+            background: rgba(0, 210, 255, 0.12);
+            color: var(--accent-primary);
+            border: 1px solid rgba(0, 210, 255, 0.3);
+            padding: 5px 14px;
+            border-radius: 20px;
+            font-size: 0.82rem;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+
+        .stage-pill.pill-time {
+            background: rgba(46, 204, 113, 0.15);
+            color: #2ecc71;
+            border-color: rgba(46, 204, 113, 0.4);
+        }
+
+        .stage-dates {
+            color: #ffffff;
+            font-size: 0.95rem;
+            font-weight: 600;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--glass-border);
+            padding: 6px 16px;
+            border-radius: 12px;
+        }
+
+        .stage-title-block h2 {
+            font-size: 2.2rem;
+            color: #ffffff;
+            margin: 0 0 8px;
+        }
+
+        .stage-subtitle {
+            font-size: 1.2rem;
+            color: var(--accent-primary);
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        .stage-context-box {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--glass-border);
+            border-radius: 16px;
+            padding: 22px 26px;
+            margin-bottom: 40px;
+            line-height: 1.7;
+            color: var(--text-secondary);
+            font-size: 1.02rem;
+        }
+
+        .stage-context-box strong {
+            color: #ffffff;
+        }
+
+        /* ─── GRILLE DES MISSIONS ─── */
+        .missions-section-title {
+            color: #ffffff;
+            font-size: 1.5rem;
+            margin-bottom: 25px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .missions-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 25px;
+            margin-bottom: 45px;
+        }
+
+        .mission-card {
+            background: rgba(255, 255, 255, 0.025);
+            border: 1px solid var(--glass-border);
+            border-radius: 18px;
+            padding: 28px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            border-left: 4px solid var(--accent-primary);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .mission-card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(0, 210, 255, 0.5);
+            background: rgba(0, 210, 255, 0.03);
+            box-shadow: 0 10px 25px rgba(0, 210, 255, 0.12);
+        }
+
+        .mission-header {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            margin-bottom: 16px;
+        }
+
+        .mission-icon {
+            font-size: 2rem;
+            background: rgba(0, 210, 255, 0.1);
+            width: 48px;
+            height: 48px;
+            line-height: 48px;
+            text-align: center;
+            border-radius: 12px;
+            border: 1px solid rgba(0, 210, 255, 0.25);
+            flex-shrink: 0;
+        }
+
+        .mission-card h3 {
+            color: #ffffff;
+            font-size: 1.25rem;
+            margin: 0;
+            line-height: 1.4;
+        }
+
+        .mission-card p {
+            color: var(--text-secondary);
+            font-size: 0.98rem;
+            line-height: 1.7;
+            margin-bottom: 16px;
+        }
+
+        .mission-bullets {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .mission-bullets li {
+            position: relative;
+            padding-left: 22px;
+            color: var(--text-secondary);
+            font-size: 0.92rem;
+            line-height: 1.55;
+        }
+
+        .mission-bullets li::before {
+            content: '▹';
+            position: absolute;
+            left: 0;
+            color: var(--accent-primary);
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+
+        .mission-bullets strong {
+            color: #ffffff;
+        }
+
+        /* ─── SECTION COMPÉTENCES / TAGS ─── */
+        .stage-skills-block {
+            margin-bottom: 45px;
+        }
+
+        .stage-skills-title {
+            color: #ffffff;
+            font-size: 1.25rem;
+            margin-bottom: 16px;
+            font-weight: 700;
+        }
+
+        .skills-chips-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .skill-chip {
+            background: rgba(0, 210, 255, 0.08);
+            color: var(--accent-primary);
+            border: 1px solid rgba(0, 210, 255, 0.25);
+            padding: 8px 18px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            transition: all 0.25s ease;
+        }
+
+        .skill-chip:hover {
+            background: var(--accent-primary);
+            color: #0b132b;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(0, 210, 255, 0.3);
+        }
+
+        /* ─── BLOC BILAN DU STAGE ─── */
+        .stage-conclusion {
+            background: linear-gradient(135deg, rgba(0, 210, 255, 0.08), rgba(11, 19, 43, 0.5));
+            border: 1px solid rgba(0, 210, 255, 0.35);
+            border-radius: 18px;
+            padding: 30px 35px;
+            line-height: 1.8;
+            color: var(--text-secondary);
+            font-size: 1.02rem;
+        }
+
+        .stage-conclusion h3 {
+            color: var(--accent-primary);
+            font-size: 1.3rem;
+            margin: 0 0 14px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .stage-conclusion p {
+            margin: 0;
+        }
+
+        .stage-conclusion strong {
+            color: #ffffff;
+        }
+
+        /* ─── RESPONSIVE ─── */
+        @media (max-width: 768px) {
+            .stage-card {
+                padding: 30px 20px;
+            }
+            .stage-title-block h2 {
+                font-size: 1.7rem;
+            }
+            .missions-grid {
+                grid-template-columns: 1fr;
+            }
+            .stage-meta-row {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <ul class="menu">
+            <li><a href="index.html">Accueil</a></li> 
+            <li>
+                <a href="#">Mes Réalisations</a>
+                <ul>
+                    <li><a href="tp.html">TPs</a></li>
+                    <li><a href="stages.html" class="active">Stages</a></li>
+                </ul>
+            </li>
+            <li><a href="candidature.html">Candidature</a></li>
+            <li><a href="veille.html">Veille</a></li> 
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+    </nav>
+    
+    <main class="container" style="padding-bottom: 120px;">
+        
+        <!-- EN-TÊTE -->
+        <header class="stages-header">
+            <h1>Mes Stages en Entreprise</h1>
+            <p>
+                Immersion professionnelle et mise en application concrète des compétences réseau, système et terrain acquises en BTS SIO.
+            </p>
+        </header>
+
+        <!-- ══════════════════════════════════════════════════ -->
+        <!-- FICHE STAGE 1 : EPSM DE LA SOMME (JUIN 2026)       -->
+        <!-- ══════════════════════════════════════════════════ -->
+        <article class="stage-card">
+            
+            <!-- Métadonnées & Période -->
+            <div class="stage-meta-row">
+                <div class="stage-badges">
+                    <span class="stage-pill">🏥 Secteur Hospitalier</span>
+                    <span class="stage-pill">🎓 1ère Année BTS SIO</span>
+                    <span class="stage-pill pill-time">⏱️ 4 Semaines</span>
+                </div>
+                <div class="stage-dates">
+                    🗓️ Du 1er Juin au 26 Juin 2026
+                </div>
+            </div>
+
+            <!-- Titres & Structure -->
+            <div class="stage-title-block">
+                <h2>Stage Réseau & Infrastructure Informatique</h2>
+                <div class="stage-subtitle">EPSM de la Somme (Établissement Public de Santé Mentale) – Amiens</div>
+            </div>
+
+            <!-- Contexte de l'organisation -->
+            <div class="stage-context-box">
+                <strong>🏥 Contexte de la structure :</strong> 
+                L'Établissement Public de Santé Mentale de la Somme (EPSM) assure des missions de santé publique et de soins psychiatriques sur l'ensemble du territoire samarien. Intégré au sein du <strong>Service Informatique (DSI)</strong>, ce stage de 4 semaines m'a plongé dans un environnement hospitalier hautement exigeant, où la continuité de service 24h/24, la fiabilité des liaisons réseau et la confidentialité des dossiers médicaux sont absolument critiques.
+            </div>
+
+            <!-- Grille des 4 Grandes Missions -->
+            <h3 class="missions-section-title">
+                <span>🛠️</span> Missions Réalisées & Expériences Terrain
+            </h3>
+
+            <div class="missions-grid">
+                
+                <!-- Mission 1 : Configs Cisco & Méthodologie -->
+                <div class="mission-card">
+                    <div>
+                        <div class="mission-header">
+                            <span class="mission-icon">⚙️</span>
+                            <h3>Configurations Réseau Cisco</h3>
+                        </div>
+                        <p>
+                            Mise en application directe des concepts théoriques et de la méthodologie vue en formation BTS SIO lors de révisions et ateliers pratiques :
+                        </p>
+                        <ul class="mission-bullets">
+                            <li>Configuration en ligne de commande (CLI) de <strong>switches Cisco Catalyst</strong>.</li>
+                            <li>Paramétrage et segmentation de <strong>VLANs</strong> pour séparer les flux administratifs, médicaux et invités.</li>
+                            <li>Application des bonnes pratiques de sécurité : <strong>Port-Security</strong> et désactivation des ports inutilisés.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Mission 2 : Baies Informatiques & Brassage -->
+                <div class="mission-card">
+                    <div>
+                        <div class="mission-header">
+                            <span class="mission-icon">🗄️</span>
+                            <h3>Audit & Réorganisation des Baies</h3>
+                        </div>
+                        <p>
+                            Immersion physique dans les locaux techniques et répartiteurs réseau pour assainir et professionnaliser les baies informatiques :
+                        </p>
+                        <ul class="mission-bullets">
+                            <li>Audit des liaisons cuivre (RJ45 Cat 6/6A) et fibre optique existantes.</li>
+                            <li><strong>Brassage complet et tri rigoureux</strong> des câbles réseau pour éliminer les nœuds et désordres historiques.</li>
+                            <li>Étiquetage normé des rocades et optimisation des flux d'air pour améliorer le refroidissement des équipements actifs.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Mission 3 : Intervention Hôpital en construction -->
+                <div class="mission-card">
+                    <div>
+                        <div class="mission-header">
+                            <span class="mission-icon">🏗️</span>
+                            <h3>Intervention sur Bâtiment en Construction</h3>
+                        </div>
+                        <p>
+                            Déplacement sur le chantier d'un nouvel hôpital / nouveau pavillon hospitalier en cours d'édification :
+                        </p>
+                        <ul class="mission-bullets">
+                            <li>Analyse et lecture des <strong>plans d'architecte et schémas d'implantation réseau</strong>.</li>
+                            <li>Vérification du repérage des futures prises réseau murales et du positionnement des bornes Wi-Fi.</li>
+                            <li>Anticipation des passages de goulottes et de l'interconnexion de la future baie d'étage avec le cœur de réseau de l'EPSM.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Mission 4 : Pratique & Méthodologie Professionnelle -->
+                <div class="mission-card">
+                    <div>
+                        <div class="mission-header">
+                            <span class="mission-icon">📋</span>
+                            <h3>Méthodologie & Rigueur Hospitalière</h3>
+                        </div>
+                        <p>
+                            Assimilation des processus rigoureux inhérents à un environnement hospitalier sous contrainte de sécurité sanitaire :
+                        </p>
+                        <ul class="mission-bullets">
+                            <li>Séances de révision et <strong>méthodologie d'intervention</strong> étape par étape avant toute manipulation en production.</li>
+                            <li>Rédaction de fiches d'intervention et mise à jour de la documentation technique pour le service informatique.</li>
+                            <li>Développement du sens des priorités face aux urgences du personnel médical et soignant.</li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Compétences & Technologies -->
+            <div class="stage-skills-block">
+                <div class="stage-skills-title">🔑 Compétences et Technologies Mobilisées</div>
+                <div class="skills-chips-row">
+                    <span class="skill-chip">Cisco IOS (CLI)</span>
+                    <span class="skill-chip">Commutation & VLANs</span>
+                    <span class="skill-chip">Sécurité Portuaire (Port-Security)</span>
+                    <span class="skill-chip">Baies de brassage & Cable Management</span>
+                    <span class="skill-chip">Câblage structuré RJ45 / Fibre</span>
+                    <span class="skill-chip">Lecture de plans techniques BTP</span>
+                    <span class="skill-chip">Réseau Hospitalier Critique</span>
+                    <span class="skill-chip">Documentation & Méthodologie</span>
+                </div>
+            </div>
+
+            <!-- Bilan / Takeaway -->
+            <div class="stage-conclusion">
+                <h3><span>💡</span> Bilan Personnel du Stage</h3>
+                <p>
+                    Ce stage de 4 semaines au sein du service informatique de l'EPSM de la Somme a été une expérience déterminante. Il m'a permis de transformer mes connaissances théoriques de BTS SIO en <strong>réflexes professionnels sur le terrain</strong>. De la configuration de matériel Cisco à la gestion physique minutieuse des baies, jusqu'au travail d'anticipation sur plan pour un bâtiment en construction, j'ai développé une grande rigueur méthodologique et confirmé ma passion pour les infrastructures réseau.
+                </p>
+            </div>
+
+        </article>
+
+    </main>
+
+    <div class="water-waves">
+        <svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
+            <defs>
+                <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
+            </defs>
+            <g class="parallax">
+                <use xlink:href="#gentle-wave" x="48" y="0" fill="rgba(0, 210, 255, 0.7)" />
+                <use xlink:href="#gentle-wave" x="48" y="3" fill="rgba(0, 210, 255, 0.5)" />
+                <use xlink:href="#gentle-wave" x="48" y="5" fill="rgba(0, 210, 255, 0.3)" />
+                <use xlink:href="#gentle-wave" x="48" y="7" fill="rgba(0, 210, 255, 0.1)" />
+            </g>
+        </svg>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Mattéo Varlet | Étudiant en BTS SIO</p>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+</body>
+</html>

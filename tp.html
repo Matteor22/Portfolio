@@ -1,0 +1,708 @@
+﻿<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>TPs - Portfolio de Mattéo Varlet</title>
+    <meta name="description" content="Travaux pratiques de Mattéo Varlet – BTS SIO SISR. Virtualisation, Linux, Réseau, Scripting, Windows Server." />
+    <link rel="stylesheet" href="css/style.css" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <style>
+        /* ── GRILLE TPs ── */
+        .tp-grid-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 28px;
+            margin-bottom: 80px;
+        }
+
+        /* ── CARTE TP ── */
+        .tp-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(12px);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            box-shadow: var(--shadow-soft);
+            transition: transform 0.35s cubic-bezier(0.4,0,0.2,1),
+                        box-shadow 0.35s cubic-bezier(0.4,0,0.2,1),
+                        border-color 0.35s cubic-bezier(0.4,0,0.2,1);
+        }
+
+        .tp-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 16px 40px rgba(0, 210, 255, 0.2);
+            border-color: rgba(0, 210, 255, 0.4);
+        }
+
+        /* Vignette image */
+        .tp-thumb {
+            width: 100%;
+            height: 160px;
+            object-fit: cover;
+            display: block;
+            background: #0a0a0f;
+        }
+
+        /* Vignette de remplacement (SVG intégré) */
+        .tp-thumb-placeholder {
+            width: 100%;
+            height: 160px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3.5em;
+            background: linear-gradient(135deg, rgba(0,210,255,0.08), rgba(10,10,15,0.9));
+            border-bottom: 1px solid var(--glass-border);
+            flex-shrink: 0;
+        }
+
+        /* Corps de la carte */
+        .tp-card-body {
+            padding: 20px 22px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            flex-grow: 1;
+        }
+
+        .tp-card-num {
+            font-size: 0.75em;
+            font-weight: 700;
+            color: var(--accent-primary);
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+
+        .tp-card h3 {
+            font-size: 1.05em;
+            color: var(--text-primary);
+            margin: 0;
+            line-height: 1.35;
+        }
+
+        .tp-card p {
+            color: var(--text-secondary);
+            font-size: 0.88em;
+            line-height: 1.55;
+            margin: 0;
+            flex-grow: 1;
+        }
+
+        /* Boutons */
+        .tp-card-actions {
+            display: flex;
+            gap: 10px;
+            margin-top: 14px;
+            flex-wrap: wrap;
+        }
+
+        .tp-card-actions .btn {
+            padding: 8px 16px;
+            font-size: 0.88em;
+            flex: 1;
+            text-align: center;
+        }
+
+        /* Hover sur l'image → icône loupe */
+        .tp-thumb-wrap {
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .tp-thumb-wrap::after {
+            content: '🔍';
+            position: absolute;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2em;
+            background: rgba(0,0,0,0.5);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .tp-thumb-wrap:hover::after {
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <ul class="menu">
+            <li><a href="index.html">Accueil</a></li>
+            <li>
+                <a href="#">Mes Réalisations</a>
+                <ul>
+                    <li><a href="tp.html">TPs</a></li>
+                    <li><a href="stages.html">Stages</a></li>
+                </ul>
+            </li>
+            <li><a href="candidature.html">Candidature</a></li>
+            <li><a href="veille.html">Veille</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+    </nav>
+
+    <main class="container" style="padding-bottom: 120px;">
+        <h1>Mes Travaux Pratiques</h1>
+        <p style="text-align:center; color:var(--text-secondary); margin-bottom:48px; font-size:1.1em;">
+            Cliquez sur la vignette pour prévisualiser — 29 travaux réalisés en formation BTS SIO SISR.
+        </p>
+
+        <div class="tp-grid-cards">
+
+            <!-- TP 1 -->
+            <article class="tp-card">
+                <div class="tp-thumb-wrap" data-pdf="documents/tp/TP-01-Installation-VM.pdf">
+                    <img src="images/tp_vm.png" alt="TP 1 Installation VM" class="tp-thumb" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+                    <div class="tp-thumb-placeholder" style="display:none">🖥️</div>
+                </div>
+                <div class="tp-card-body">
+                    <span class="tp-card-num">TP 1 · Virtualisation</span>
+                    <h3>Installation d'une VM</h3>
+                    <p>Création et configuration d'une machine virtuelle sous VirtualBox.</p>
+                    <div class="tp-card-actions">
+                        <button class="btn btn-primary view-pdf" data-pdf-url="documents/tp/TP-01-Installation-VM.pdf">Prévisualiser</button>
+                        <a href="documents/tp/TP-01-Installation-VM.pdf" download class="btn btn-outline">Télécharger</a>
+                    </div>
+                </div>
+            </article>
+
+            <!-- TP 2 -->
+            <article class="tp-card">
+                <div class="tp-thumb-wrap" data-pdf="documents/tp/TP-02-Invite-de-Commandes.pdf">
+                    <img src="images/tp_cmd.png" alt="TP 2 Invite de commande" class="tp-thumb" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+                    <div class="tp-thumb-placeholder" style="display:none">⌨️</div>
+                </div>
+                <div class="tp-card-body">
+                    <span class="tp-card-num">TP 2 · CMD</span>
+                    <h3>Invite de Commande Windows</h3>
+                    <p>Prise en main et maîtrise de l'invite de commandes Windows (CMD).</p>
+                    <div class="tp-card-actions">
+                        <button class="btn btn-primary view-pdf" data-pdf-url="documents/tp/TP-02-Invite-de-Commandes.pdf">Prévisualiser</button>
+                        <a href="documents/tp/TP-02-Invite-de-Commandes.pdf" download class="btn btn-outline">Télécharger</a>
+                    </div>
+                </div>
+            </article>
+
+            <!-- TP 3 -->
+            <article class="tp-card">
+                <div class="tp-thumb-wrap" data-pdf="documents/tp/TP-03-PowerShell.pdf">
+                    <img src="images/tp_powershell.png" alt="TP 3 PowerShell" class="tp-thumb" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+                    <div class="tp-thumb-placeholder" style="display:none">💙</div>
+                </div>
+                <div class="tp-card-body">
+                    <span class="tp-card-num">TP 3 · PowerShell</span>
+                    <h3>PowerShell</h3>
+                    <p>Introduction à PowerShell – syntaxe, cmdlets et premiers scripts d'administration.</p>
+                    <div class="tp-card-actions">
+                        <button class="btn btn-primary view-pdf" data-pdf-url="documents/tp/TP-03-PowerShell.pdf">Prévisualiser</button>
+                        <a href="documents/tp/TP-03-PowerShell.pdf" download class="btn btn-outline">Télécharger</a>
+                    </div>
+                </div>
+            </article>
+
+            <!-- TP 4 -->
+            <article class="tp-card">
+                <div class="tp-thumb-wrap" data-pdf="documents/tp/TP-04-Conception-PC.pdf">
+                    <img src="images/tp_hardware.png" alt="TP 4 Conception PC" class="tp-thumb" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+                    <div class="tp-thumb-placeholder" style="display:none">💻</div>
+                </div>
+                <div class="tp-card-body">
+                    <span class="tp-card-num">TP 4 · Hardware</span>
+                    <h3>Conception d'un PC</h3>
+                    <p>Choix, justification et configuration d'un PC sur-mesure selon un cahier des charges.</p>
+                    <div class="tp-card-actions">
+                        <button class="btn btn-primary view-pdf" data-pdf-url="documents/tp/TP-04-Conception-PC.pdf">Prévisualiser</button>
+                        <a href="documents/tp/TP-04-Conception-PC.pdf" download class="btn btn-outline">Télécharger</a>
+                    </div>
+                </div>
+            </article>
+
+            <!-- TP 5 -->
+            <article class="tp-card">
+                <div class="tp-thumb-wrap" data-pdf="documents/tp/TP-05-Maitrise-CMD-Scripting-BAT.pdf">
+                    <div class="tp-thumb-placeholder">⚙️</div>
+                </div>
+                <div class="tp-card-body">
+                    <span class="tp-card-num">TP 5 · Scripting</span>
+                    <h3>Maîtrise du CMD &amp; Scripting .BAT</h3>
+                    <p>Approfondissement du CMD Windows et création de scripts batch automatisés.</p>
+                    <div class="tp-card-actions">
+                        <button class="btn btn-primary view-pdf" data-pdf-url="documents/tp/TP-05-Maitrise-CMD-Scripting-BAT.pdf">Prévisualiser</button>
+                        <a href="documents/tp/TP-05-Maitrise-CMD-Scripting-BAT.pdf" download class="btn btn-outline">Télécharger</a>
+                    </div>
+                </div>
+            </article>
+
+            <!-- TP 6 -->
+            <article class="tp-card">
+                <div class="tp-thumb-wrap" data-pdf="documents/tp/TP-06-Bases-de-Donnees-SQL.pdf">
+                    <div class="tp-thumb-placeholder">🗄️</div>
+                </div>
+                <div class="tp-card-body">
+                    <span class="tp-card-num">TP 6 · Base de données</span>
+                    <h3>TD 1 — Bases de données</h3>
+                    <p>Introduction aux bases de données relationnelles – modélisation et requêtes SQL.</p>
+                    <div class="tp-card-actions">
+                        <button class="btn btn-primary view-pdf" data-pdf-url="documents/tp/TP-06-Bases-de-Donnees-SQL.pdf">Prévisualiser</button>
+                        <a href="documents/tp/TP-06-Bases-de-Donnees-SQL.pdf" download class="btn btn-outline">Télécharger</a>
+                    </div>
+                </div>
+            </article>
+
+            <!-- TP 7 -->
+            <article class="tp-card">
+                <div class="tp-thumb-wrap" data-pdf="documents/tp/TP-07-Commandes-CMD-Support.pdf">
+                    <div class="tp-thumb-placeholder">🛠️</div>
+                </div>
+                <div class="tp-card-body">
+                    <span class="tp-card-num">TP 7 · Support</span>
+                    <h3>Commandes CMD — Support Informatique</h3>
+                    <p>Les commandes CMD incontournables pour le technicien support N1/N2.</p>
+                    <div class="tp-card-actions">
+                        <button class="btn btn-primary view-pdf" data-pdf-url="documents/tp/TP-07-Commandes-CMD-Support.pdf">Prévisualiser</button>
+                        <a href="documents/tp/TP-07-Commandes-CMD-Support.pdf" download class="btn btn-outline">Télécharger</a>
+                    </div>
+                </div>
+            </article>
+
+            <!-- TP 8 -->
+            <article class="tp-card">
+                <div class="tp-thumb-wrap" data-pdf="documents/tp/TP-08-Problemes-Reseau.pdf">
+                    <img src="images/tp_reseau.png" alt="TP 8 Problèmes réseau" class="tp-thumb" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+                    <div class="tp-thumb-placeholder" style="display:none">🌐</div>
+                </div>
+                <div class="tp-card-body">
+                    <span class="tp-card-num">TP 8 · Réseau</span>
+                    <h3>Problèmes Réseau</h3>
+                    <p>Diagnostic et résolution de problèmes de connectivité réseau courants.</p>
+                    <div class="tp-card-actions">
+                        <button class="btn btn-primary view-pdf" data-pdf-url="documents/tp/TP-08-Problemes-Reseau.pdf">Prévisualiser</button>
+                        <a href="documents/tp/TP-08-Problemes-Reseau.pdf" download class="btn btn-outline">Télécharger</a>
+                    </div>
+                </div>
+            </article>
+
+            <!-- TP 9 -->
+            <article class="tp-card">
+                <div class="tp-thumb-wrap" data-pdf="documents/tp/TP-09-Commandes-PowerShell.pdf">
+                    <div class="tp-thumb-placeholder">🔷</div>
+                </div>
+                <div class="tp-card-body">
+                    <span class="tp-card-num">TP 9 · PowerShell</span>
+                    <h3>Commandes PowerShell</h3>
+                    <p>Référence pratique des commandes et cmdlets PowerShell pour l'administration.</p>
+                    <div class="tp-card-actions">
+                        <button class="btn btn-primary view-pdf" data-pdf-url="documents/tp/TP-09-Commandes-PowerShell.pdf">Prévisualiser</button>
+                        <a href="documents/tp/TP-09-Commandes-PowerShell.pdf" download class="btn btn-outline">Télécharger</a>
+                    </div>
+                </div>
+            </article>
+
+            <!-- TP 10 -->
+            <article class="tp-card">
+                <div class="tp-thumb-wrap" data-pdf="documents/tp/TP-10-Premiere-Connexion-Linux.pdf">
+                    <img src="images/tp_linux.png" alt="TP 10 Linux" class="tp-thumb" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+                    <div class="tp-thumb-placeholder" style="display:none">🐧</div>
+                </div>
+                <div class="tp-card-body">
+                    <span class="tp-card-num">TP 10 · Linux</span>
+                    <h3>Première Connexion Linux</h3>
+                    <p>Prise en main d'un système Linux – navigation, droits et premiers outils.</p>
+                    <div class="tp-card-actions">
+                        <button class="btn btn-primary view-pdf" data-pdf-url="documents/tp/TP-10-Premiere-Connexion-Linux.pdf">Prévisualiser</button>
+                        <a href="documents/tp/TP-10-Premiere-Connexion-Linux.pdf" download class="btn btn-outline">Télécharger</a>
+                    </div>
+                </div>
+            </article>
+
+            <!-- TP 11 -->
+            <article class="tp-card">
+                <div class="tp-thumb-wrap" data-pdf="documents/tp/TP-11-Additions-Invitees-VirtualBox.pdf">
+                    <div class="tp-thumb-placeholder">📦</div>
+                </div>
+                <div class="tp-card-body">
+                    <span class="tp-card-num">TP 11 · Virtualisation</span>
+                    <h3>Additions Invitées VirtualBox</h3>
+                    <p>Installation des additions invitées pour améliorer l'expérience en VM.</p>
+                    <div class="tp-card-actions">
+                        <button class="btn btn-primary view-pdf" data-pdf-url="documents/tp/TP-11-Additions-Invitees-VirtualBox.pdf">Prévisualiser</button>
+                        <a href="documents/tp/TP-11-Additions-Invitees-VirtualBox.pdf" download class="btn btn-outline">Télécharger</a>
+                    </div>
+                </div>
+            </article>
+
+            <!-- TP 12 -->
+            <article class="tp-card">
+                <div class="tp-thumb-wrap" data-pdf="documents/tp/TP-12-Installation-Xubuntu.pdf">
+                    <div class="tp-thumb-placeholder">🐧</div>
+                </div>
+                <div class="tp-card-body">
+                    <span class="tp-card-num">TP 12 · Linux</span>
+                    <h3>Xubuntu</h3>
+                    <p>Installation et configuration de la distribution Xubuntu (Ubuntu léger).</p>
+                    <div class="tp-card-actions">
+                        <button class="btn btn-primary view-pdf" data-pdf-url="documents/tp/TP-12-Installation-Xubuntu.pdf">Prévisualiser</button>
+                        <a href="documents/tp/TP-12-Installation-Xubuntu.pdf" download class="btn btn-outline">Télécharger</a>
+                    </div>
+                </div>
+            </article>
+
+            <!-- TP 13 -->
+            <article class="tp-card">
+                <div class="tp-thumb-wrap" data-pdf="documents/tp/TP-13-Gestion-Utilisateurs-Linux.pdf">
+                    <div class="tp-thumb-placeholder">👤</div>
+                </div>
+                <div class="tp-card-body">
+                    <span class="tp-card-num">TP 13 · Linux Admin</span>
+                    <h3>Gestion des Utilisateurs Linux</h3>
+                    <p>Création, modification et gestion des comptes utilisateurs sous Linux.</p>
+                    <div class="tp-card-actions">
+                        <button class="btn btn-primary view-pdf" data-pdf-url="documents/tp/TP-13-Gestion-Utilisateurs-Linux.pdf">Prévisualiser</button>
+                        <a href="documents/tp/TP-13-Gestion-Utilisateurs-Linux.pdf" download class="btn btn-outline">Télécharger</a>
+                    </div>
+                </div>
+            </article>
+
+            <!-- TP 14 -->
+            <article class="tp-card">
+                <div class="tp-thumb-wrap" data-pdf="documents/tp/TP-14-Windows-Linux-Mint.pdf">
+                    <div class="tp-thumb-placeholder">🌿</div>
+                </div>
+                <div class="tp-card-body">
+                    <span class="tp-card-num">TP 14 · Linux</span>
+                    <h3>Windows &amp; Linux Mint</h3>
+                    <p>Installation et configuration d'un environnement dual-boot ou Linux Mint.</p>
+                    <div class="tp-card-actions">
+                        <button class="btn btn-primary view-pdf" data-pdf-url="documents/tp/TP-14-Windows-Linux-Mint.pdf">Prévisualiser</button>
+                        <a href="documents/tp/TP-14-Windows-Linux-Mint.pdf" download class="btn btn-outline">Télécharger</a>
+                    </div>
+                </div>
+            </article>
+
+            <!-- TP 15 -->
+            <article class="tp-card">
+                <div class="tp-thumb-wrap" data-pdf="documents/tp/TP-15-Cisco-Packet-Tracer.pdf">
+                    <div class="tp-thumb-placeholder">🌐</div>
+                </div>
+                <div class="tp-card-body">
+                    <span class="tp-card-num">TP 15 · Réseau</span>
+                    <h3>Cisco — Packet Tracer</h3>
+                    <p>Configuration d'équipements Cisco (routeurs, switches) sur Packet Tracer.</p>
+                    <div class="tp-card-actions">
+                        <button class="btn btn-primary view-pdf" data-pdf-url="documents/tp/TP-15-Cisco-Packet-Tracer.pdf">Prévisualiser</button>
+                        <a href="documents/tp/TP-15-Cisco-Packet-Tracer.pdf" download class="btn btn-outline">Télécharger</a>
+                    </div>
+                </div>
+            </article>
+
+            <!-- TP 16 -->
+            <article class="tp-card">
+                <div class="tp-thumb-wrap" data-pdf="documents/tp/TP-16-Configuration-Switch.pdf">
+                    <div class="tp-thumb-placeholder">🔌</div>
+                </div>
+                <div class="tp-card-body">
+                    <span class="tp-card-num">TP 16 · Réseau</span>
+                    <h3>Switch — Configuration</h3>
+                    <p>Configuration et administration d'un switch réseau (VLANs, STP, etc.).</p>
+                    <div class="tp-card-actions">
+                        <button class="btn btn-primary view-pdf" data-pdf-url="documents/tp/TP-16-Configuration-Switch.pdf">Prévisualiser</button>
+                        <a href="documents/tp/TP-16-Configuration-Switch.pdf" download class="btn btn-outline">Télécharger</a>
+                    </div>
+                </div>
+            </article>
+
+            <!-- TP 17 -->
+            <article class="tp-card">
+                <div class="tp-thumb-wrap" data-pdf="documents/tp/TP-17-Commandes-Essentielles.pdf">
+                    <div class="tp-thumb-placeholder">📋</div>
+                </div>
+                <div class="tp-card-body">
+                    <span class="tp-card-num">TP 17 · Commandes</span>
+                    <h3>Commandes Essentielles</h3>
+                    <p>Référence des commandes système et réseau essentielles pour l'administration.</p>
+                    <div class="tp-card-actions">
+                        <button class="btn btn-primary view-pdf" data-pdf-url="documents/tp/TP-17-Commandes-Essentielles.pdf">Prévisualiser</button>
+                        <a href="documents/tp/TP-17-Commandes-Essentielles.pdf" download class="btn btn-outline">Télécharger</a>
+                    </div>
+                </div>
+            </article>
+
+            <!-- TP 18 -->
+            <article class="tp-card">
+                <div class="tp-thumb-wrap" data-pdf="documents/tp/TP-18-Infrastructure-Reseau.pdf">
+                    <div class="tp-thumb-placeholder">🏗️</div>
+                </div>
+                <div class="tp-card-body">
+                    <span class="tp-card-num">TP 18 · Réseau</span>
+                    <h3>Infrastructure Réseau</h3>
+                    <p>Conception et documentation d'une infrastructure réseau complète.</p>
+                    <div class="tp-card-actions">
+                        <button class="btn btn-primary view-pdf" data-pdf-url="documents/tp/TP-18-Infrastructure-Reseau.pdf">Prévisualiser</button>
+                        <a href="documents/tp/TP-18-Infrastructure-Reseau.pdf" download class="btn btn-outline">Télécharger</a>
+                    </div>
+                </div>
+            </article>
+
+            <!-- TP 19 -->
+            <article class="tp-card">
+                <div class="tp-thumb-wrap" data-pdf="documents/tp/TP-19-Impression-Linux-CUPS.pdf">
+                    <div class="tp-thumb-placeholder">🖨️</div>
+                </div>
+                <div class="tp-card-body">
+                    <span class="tp-card-num">TP 19 · Linux Admin</span>
+                    <h3>Impression Linux — CUPS</h3>
+                    <p>Gestion du service d'impression sous Linux avec CUPS.</p>
+                    <div class="tp-card-actions">
+                        <button class="btn btn-primary view-pdf" data-pdf-url="documents/tp/TP-19-Impression-Linux-CUPS.pdf">Prévisualiser</button>
+                        <a href="documents/tp/TP-19-Impression-Linux-CUPS.pdf" download class="btn btn-outline">Télécharger</a>
+                    </div>
+                </div>
+            </article>
+
+            <!-- TP 20 -->
+            <article class="tp-card">
+                <div class="tp-thumb-wrap" data-pdf="documents/tp/TP-20-Revisions-Lab-1.pdf">
+                    <div class="tp-thumb-placeholder">📝</div>
+                </div>
+                <div class="tp-card-body">
+                    <span class="tp-card-num">TP 20 · Révisions</span>
+                    <h3>Révisions — Lab 1</h3>
+                    <p>TP de révision consolidant les connaissances des modules précédents.</p>
+                    <div class="tp-card-actions">
+                        <button class="btn btn-primary view-pdf" data-pdf-url="documents/tp/TP-20-Revisions-Lab-1.pdf">Prévisualiser</button>
+                        <a href="documents/tp/TP-20-Revisions-Lab-1.pdf" download class="btn btn-outline">Télécharger</a>
+                    </div>
+                </div>
+            </article>
+
+            <!-- TP 21 -->
+            <article class="tp-card">
+                <div class="tp-thumb-wrap" data-pdf="documents/tp/TP-21-Commandes-Fondamentales-Linux.pdf">
+                    <div class="tp-thumb-placeholder">🐧</div>
+                </div>
+                <div class="tp-card-body">
+                    <span class="tp-card-num">TP 21 · Linux</span>
+                    <h3>Commandes Fondamentales Linux</h3>
+                    <p>Maîtrise des commandes de base du terminal Linux (ls, cd, chmod, grep…).</p>
+                    <div class="tp-card-actions">
+                        <button class="btn btn-primary view-pdf" data-pdf-url="documents/tp/TP-21-Commandes-Fondamentales-Linux.pdf">Prévisualiser</button>
+                        <a href="documents/tp/TP-21-Commandes-Fondamentales-Linux.pdf" download class="btn btn-outline">Télécharger</a>
+                    </div>
+                </div>
+            </article>
+
+            <!-- TP 22 -->
+            <article class="tp-card">
+                <div class="tp-thumb-wrap" data-pdf="documents/tp/TP-22-Proxmox-VE.pdf">
+                    <div class="tp-thumb-placeholder">🖧</div>
+                </div>
+                <div class="tp-card-body">
+                    <span class="tp-card-num">TP 22 · Virtualisation</span>
+                    <h3>Proxmox VE</h3>
+                    <p>Déploiement et administration d'un hyperviseur Proxmox VE.</p>
+                    <div class="tp-card-actions">
+                        <button class="btn btn-primary view-pdf" data-pdf-url="documents/tp/TP-22-Proxmox-VE.pdf">Prévisualiser</button>
+                        <a href="documents/tp/TP-22-Proxmox-VE.pdf" download class="btn btn-outline">Télécharger</a>
+                    </div>
+                </div>
+            </article>
+
+            <!-- TP 23 -->
+            <article class="tp-card">
+                <div class="tp-thumb-wrap" data-pdf="documents/tp/TP-23-Utilisateurs-Groupes-Linux.pdf">
+                    <div class="tp-thumb-placeholder">👥</div>
+                </div>
+                <div class="tp-card-body">
+                    <span class="tp-card-num">TP 23 · Linux Admin</span>
+                    <h3>Utilisateurs &amp; Groupes Linux</h3>
+                    <p>Gestion avancée des utilisateurs, groupes et permissions sous Linux.</p>
+                    <div class="tp-card-actions">
+                        <button class="btn btn-primary view-pdf" data-pdf-url="documents/tp/TP-23-Utilisateurs-Groupes-Linux.pdf">Prévisualiser</button>
+                        <a href="documents/tp/TP-23-Utilisateurs-Groupes-Linux.pdf" download class="btn btn-outline">Télécharger</a>
+                    </div>
+                </div>
+            </article>
+
+            <!-- TP 24 -->
+            <article class="tp-card">
+                <div class="tp-thumb-wrap" data-pdf="documents/tp/TP-24-ACL-Listes-Controle-Acces.pdf">
+                    <div class="tp-thumb-placeholder">🔒</div>
+                </div>
+                <div class="tp-card-body">
+                    <span class="tp-card-num">TP 24 · Sécurité</span>
+                    <h3>ACL — Listes de Contrôle d'Accès</h3>
+                    <p>Configuration et gestion des ACL pour contrôler les droits d'accès.</p>
+                    <div class="tp-card-actions">
+                        <button class="btn btn-primary view-pdf" data-pdf-url="documents/tp/TP-24-ACL-Listes-Controle-Acces.pdf">Prévisualiser</button>
+                        <a href="documents/tp/TP-24-ACL-Listes-Controle-Acces.pdf" download class="btn btn-outline">Télécharger</a>
+                    </div>
+                </div>
+            </article>
+
+            <!-- TP 25 -->
+            <article class="tp-card">
+                <div class="tp-thumb-wrap" data-pdf="documents/tp/TP-25-Windows-11-sur-Proxmox.pdf">
+                    <div class="tp-thumb-placeholder">🪟</div>
+                </div>
+                <div class="tp-card-body">
+                    <span class="tp-card-num">TP 25 · Virtualisation</span>
+                    <h3>Windows 11 sur Proxmox</h3>
+                    <p>Déploiement d'une VM Windows 11 sur un hyperviseur Proxmox VE.</p>
+                    <div class="tp-card-actions">
+                        <button class="btn btn-primary view-pdf" data-pdf-url="documents/tp/TP-25-Windows-11-sur-Proxmox.pdf">Prévisualiser</button>
+                        <a href="documents/tp/TP-25-Windows-11-sur-Proxmox.pdf" download class="btn btn-outline">Télécharger</a>
+                    </div>
+                </div>
+            </article>
+
+            <!-- TP 26 -->
+            <article class="tp-card">
+                <div class="tp-thumb-wrap" data-pdf="documents/tp/TP-26-Nmap-Cartographie-Audit-Reseau.pdf">
+                    <div class="tp-thumb-placeholder">🛡️</div>
+                </div>
+                <div class="tp-card-body">
+                    <span class="tp-card-num">TP 26 · Cybersécurité</span>
+                    <h3>Nmap — Cartographie &amp; Audit Réseau</h3>
+                    <p>Utilisation de Nmap pour scanner et auditer une infrastructure réseau.</p>
+                    <div class="tp-card-actions">
+                        <button class="btn btn-primary view-pdf" data-pdf-url="documents/tp/TP-26-Nmap-Cartographie-Audit-Reseau.pdf">Prévisualiser</button>
+                        <a href="documents/tp/TP-26-Nmap-Cartographie-Audit-Reseau.pdf" download class="btn btn-outline">Télécharger</a>
+                    </div>
+                </div>
+            </article>
+
+            <!-- TP 27 -->
+            <article class="tp-card">
+                <div class="tp-thumb-wrap" data-pdf="documents/tp/TP-27-VM-Debian-sur-Proxmox.pdf">
+                    <div class="tp-thumb-placeholder">🐧</div>
+                </div>
+                <div class="tp-card-body">
+                    <span class="tp-card-num">TP 27 · Virtualisation</span>
+                    <h3>VM Debian sur Proxmox</h3>
+                    <p>Création et configuration d'une VM Debian sur l'hyperviseur Proxmox VE.</p>
+                    <div class="tp-card-actions">
+                        <button class="btn btn-primary view-pdf" data-pdf-url="documents/tp/TP-27-VM-Debian-sur-Proxmox.pdf">Prévisualiser</button>
+                        <a href="documents/tp/TP-27-VM-Debian-sur-Proxmox.pdf" download class="btn btn-outline">Télécharger</a>
+                    </div>
+                </div>
+            </article>
+
+            <!-- TP 28 -->
+            <article class="tp-card">
+                <div class="tp-thumb-wrap" data-pdf="documents/tp/TP-28-Projet-1-Pare-feu-pfSense.pdf">
+                    <div class="tp-thumb-placeholder">🔥</div>
+                </div>
+                <div class="tp-card-body">
+                    <span class="tp-card-num">TP 28 · Projet · Réseau</span>
+                    <h3>Projet 1 — pfSense Firewall</h3>
+                    <p>Installation et configuration du pare-feu pfSense pour sécuriser un réseau.</p>
+                    <div class="tp-card-actions">
+                        <button class="btn btn-primary view-pdf" data-pdf-url="documents/tp/TP-28-Projet-1-Pare-feu-pfSense.pdf">Prévisualiser</button>
+                        <a href="documents/tp/TP-28-Projet-1-Pare-feu-pfSense.pdf" download class="btn btn-outline">Télécharger</a>
+                    </div>
+                </div>
+            </article>
+
+            <!-- TP 29 -->
+            <article class="tp-card">
+                <div class="tp-thumb-wrap" data-pdf="documents/tp/TP-29-Projet-1-Etape-2-Windows-Server-2022.pdf">
+                    <div class="tp-thumb-placeholder">🪟</div>
+                </div>
+                <div class="tp-card-body">
+                    <span class="tp-card-num">TP 29 · Projet · Windows Server</span>
+                    <h3>Projet 1 Ét. 2 — Windows Server 2022</h3>
+                    <p>Déploiement Active Directory, DNS et DHCP sur Windows Server 2022.</p>
+                    <div class="tp-card-actions">
+                        <button class="btn btn-primary view-pdf" data-pdf-url="documents/tp/TP-29-Projet-1-Etape-2-Windows-Server-2022.pdf">Prévisualiser</button>
+                        <a href="documents/tp/TP-29-Projet-1-Etape-2-Windows-Server-2022.pdf" download class="btn btn-outline">Télécharger</a>
+                    </div>
+                </div>
+            </article>
+
+        </div>
+    </main>
+
+    <!-- Viewer PDF -->
+    <div id="pdf-viewer">
+        <span id="close-pdf">&times;</span>
+        <iframe id="pdf-iframe" src="" title="Visualisation du document PDF"></iframe>
+    </div>
+
+    <!-- Vagues -->
+    <div class="water-waves">
+        <svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+             viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
+            <defs>
+                <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
+            </defs>
+            <g class="parallax">
+                <use xlink:href="#gentle-wave" x="48" y="0" fill="rgba(0, 210, 255, 0.7)" />
+                <use xlink:href="#gentle-wave" x="48" y="3" fill="rgba(0, 210, 255, 0.5)" />
+                <use xlink:href="#gentle-wave" x="48" y="5" fill="rgba(0, 210, 255, 0.3)" />
+                <use xlink:href="#gentle-wave" x="48" y="7" fill="rgba(0, 210, 255, 0.1)" />
+            </g>
+        </svg>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Mattéo Varlet | Étudiant en BTS SIO</p>
+        </div>
+    </footer>
+
+    <script>
+    $(document).ready(function () {
+
+        // Clic sur la vignette → prévisualisation PDF
+        $('.tp-thumb-wrap').on('click', function () {
+            var pdfUrl = $(this).data('pdf');
+            if (pdfUrl) {
+                $('#pdf-iframe').attr('src', pdfUrl);
+                $('#pdf-viewer').css('display', 'flex').hide().fadeIn(300);
+                $('body').css('overflow', 'hidden');
+            }
+        });
+
+        // Clic sur bouton Prévisualiser
+        $(document).on('click', '.view-pdf', function (e) {
+            e.preventDefault();
+            var pdfUrl = $(this).data('pdf-url');
+            if (pdfUrl) {
+                $('#pdf-iframe').attr('src', pdfUrl);
+                $('#pdf-viewer').css('display', 'flex').hide().fadeIn(300);
+                $('body').css('overflow', 'hidden');
+            }
+        });
+
+        // Fermer le viewer
+        $('#close-pdf').on('click', function () {
+            $('#pdf-viewer').fadeOut(300, function () {
+                $('#pdf-iframe').attr('src', '');
+            });
+            $('body').css('overflow', 'auto');
+        });
+
+        // Fermer avec Echap
+        $(document).on('keydown', function (e) {
+            if (e.key === 'Escape') {
+                $('#pdf-viewer').fadeOut(300, function () {
+                    $('#pdf-iframe').attr('src', '');
+                });
+                $('body').css('overflow', 'auto');
+            }
+        });
+    });
+    </script>
+
+    <script src="js/script.js"></script>
+</body>
+</html>

@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Accueil - Portfolio de Mattéo Varlet</title>
+    <meta name="description" content="Portfolio de Mattéo Varlet, étudiant en BTS SIO – Développement web, systèmes & réseaux, administration." />
+    <link rel="stylesheet" href="css/style.css" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+
+    <!-- Conteneur des étoiles (généré via JS) -->
+    <div id="stars-container" aria-hidden="true"></div>
+
+    <nav>
+        <ul class="menu">
+            <li><a href="index.html">Accueil</a></li>
+            <li>
+                <a href="#">Mes Réalisations</a>
+                <ul>
+                    <li><a href="tp.html">TPs</a></li>
+                    <li><a href="stages.html">Stages</a></li>
+                </ul>
+            </li>
+            <li><a href="candidature.html">Candidature</a></li>
+            <li><a href="veille.html">Veille</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+    </nav>
+
+    <main>
+
+        <!-- ═══════════════════════════════════════════ -->
+        <!-- HERO SECTION                                -->
+        <!-- ═══════════════════════════════════════════ -->
+        <section class="hero-fullpage">
+            <div class="hero-badge">🎓 BTS SIO – SISR</div>
+            <h1 class="hero-name">Mattéo <span class="accent-gradient">Varlet</span></h1>
+            <p class="hero-subtitle">
+                <span class="typing-wrapper">
+                    <span id="typing-text"></span><span class="typing-cursor">|</span>
+                </span>
+            </p>
+            <p class="hero-desc">
+                Passionné par l'informatique, les systèmes et les réseaux.<br>
+                En formation BTS SIO à Troyes, prêt à relever de nouveaux défis.
+            </p>
+
+
+            <!-- Stats rapides -->
+            <div class="hero-stats">
+                <div class="stat-item">
+                    <span class="stat-number" data-target="10">0</span>
+                    <span class="stat-plus">+</span>
+                    <span class="stat-label">TPs réalisés</span>
+                </div>
+                <div class="stat-divider"></div>
+                <div class="stat-item">
+                    <span class="stat-number" data-target="2">0</span>
+                    <span class="stat-plus"></span>
+                    <span class="stat-label">Stages effectués</span>
+                </div>
+                <div class="stat-divider"></div>
+                <div class="stat-item">
+                    <span class="stat-number" data-target="2">0</span>
+                    <span class="stat-plus"> ans</span>
+                    <span class="stat-label">de formation BTS</span>
+                </div>
+            </div>
+
+            <div class="scroll-indicator" aria-label="Défiler vers le bas">
+                <span></span>
+            </div>
+        </section>
+
+        <!-- ═══════════════════════════════════════════ -->
+        <!-- COMPÉTENCES                                 -->
+        <!-- ═══════════════════════════════════════════ -->
+        <section id="competences" class="section-block container">
+            <div class="section-label">Ce que je sais faire</div>
+            <h2 class="section-title">Mes Compétences</h2>
+
+            <div class="skills-grid">
+
+                <article class="skill-card" id="skill-web">
+                    <div class="skill-icon">🌐</div>
+                    <h3>Développement Web</h3>
+                    <p>Création d'interfaces responsives et modernes avec <strong>HTML5</strong>, <strong>CSS3</strong> et <strong>JavaScript</strong>. Intégration de designs glassmorphism et animations CSS.</p>
+                    <div class="skill-tags">
+                        <span>HTML5</span><span>CSS3</span><span>JavaScript</span><span>jQuery</span>
+                    </div>
+                </article>
+
+                <article class="skill-card" id="skill-sys">
+                    <div class="skill-icon">⚙️</div>
+                    <h3>Systèmes & Réseaux</h3>
+                    <p>Administration de machines virtuelles sous <strong>Windows Server</strong> et <strong>Linux</strong>. Maîtrise des protocoles réseau, adressage <strong>IPv4</strong> et configuration de routeurs.</p>
+                    <div class="skill-tags">
+                        <span>VirtualBox</span><span>Linux</span><span>IPv4</span><span>Cisco</span>
+                    </div>
+                </article>
+
+                <article class="skill-card" id="skill-cmd">
+                    <div class="skill-icon">⌨️</div>
+                    <h3>Ligne de Commande</h3>
+                    <p>Maîtrise avancée de <strong>CMD</strong> et <strong>PowerShell</strong>. Création de scripts batch d'automatisation. Commandes de support et diagnostic réseau.</p>
+                    <div class="skill-tags">
+                        <span>CMD</span><span>PowerShell</span><span>Batch</span><span>Scripts</span>
+                    </div>
+                </article>
+
+                <article class="skill-card" id="skill-hw">
+                    <div class="skill-icon">💻</div>
+                    <h3>Hardware & Support</h3>
+                    <p>Architecture matérielle, montage et configuration de PC sur-mesure. Diagnostic et dépannage de pannes matérielles et logicielles.</p>
+                    <div class="skill-tags">
+                        <span>Assemblage</span><span>Diagnostic</span><span>Support N1/N2</span>
+                    </div>
+                </article>
+
+                <article class="skill-card" id="skill-docker">
+                    <div class="skill-icon">🐳</div>
+                    <h3>Conteneurisation</h3>
+                    <p>Découverte et utilisation de <strong>Docker</strong> pour créer, déployer et gérer des conteneurs d'applications isolés.</p>
+                    <div class="skill-tags">
+                        <span>Docker</span><span>Conteneurs</span><span>Images</span>
+                    </div>
+                </article>
+
+                <article class="skill-card" id="skill-veille">
+                    <div class="skill-icon">📡</div>
+                    <h3>Veille Technologique</h3>
+                    <p>Suivi régulier des évolutions du secteur IT, cybersécurité et nouvelles technologies. Capacité d'analyse et de synthèse des informations.</p>
+                    <div class="skill-tags">
+                        <span>Cybersécurité</span><span>Cloud</span><span>IA</span>
+                    </div>
+                </article>
+
+            </div>
+        </section>
+
+        <!-- ═══════════════════════════════════════════ -->
+        <!-- PARCOURS                                    -->
+        <!-- ═══════════════════════════════════════════ -->
+
+
+        <!-- ═══════════════════════════════════════════ -->
+        <!-- CTA FINAL                                   -->
+        <!-- ═══════════════════════════════════════════ -->
+        <section class="cta-section container">
+            <div class="cta-card">
+                <h2>Intéressé par mon profil ?</h2>
+                <p>N'hésitez pas à consulter mon CV ou à me contacter directement.</p>
+                <div class="cta-actions">
+                    <a href="cv.html" class="btn btn-primary" id="cta-btn-cv">Voir mon CV</a>
+                    <a href="contact.html" class="btn btn-outline" id="cta-btn-contact">Me contacter</a>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Mattéo Varlet | Étudiant en BTS SIO</p>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
