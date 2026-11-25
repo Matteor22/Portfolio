@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Candidature (CV & Lettre) - Portfolio de Mattéo Varlet</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        /* ========================================================
+           STYLES ONGLET CANDIDATURE (CV & LETTRE DE MOTIVATION)
+           ======================================================== */
+        
+        .candidature-header {
+            text-align: center;
+            margin-bottom: 35px;
+        }
+
+        .candidature-header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 12px;
+            color: var(--text-primary);
+        }
+
+        .candidature-header p {
+            color: var(--text-secondary);
+            font-size: 1.05rem;
+            max-width: 650px;
+            margin: 0 auto 25px;
+        }
+
+        /* Barre d'onglets (Switcher Glassmorphism) */
+        .cand-switch-container {
+            display: inline-flex;
+            background: rgba(10, 25, 47, 0.6);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border: 1px solid var(--glass-border);
+            border-radius: 50px;
+            padding: 6px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.35);
+            gap: 8px;
+            margin-bottom: 20px;
+        }
+
+        .cand-tab-btn {
+            background: transparent;
+            border: 1px solid transparent;
+            color: var(--text-secondary);
+            font-size: 1.05rem;
+            font-weight: 600;
+            padding: 12px 28px;
+            border-radius: 40px;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .cand-tab-btn:hover {
+            color: #ffffff;
+            background: rgba(0, 210, 255, 0.08);
+        }
+
+        .cand-tab-btn.active {
+            background: linear-gradient(135deg, rgba(0, 210, 255, 0.3), rgba(58, 123, 213, 0.45));
+            color: #ffffff;
+            border: 1px solid rgba(0, 210, 255, 0.6);
+            box-shadow: 0 4px 20px rgba(0, 210, 255, 0.35);
+        }
+
+        .cand-tab-btn .tab-icon {
+            font-size: 1.2rem;
+        }
+
+        /* Conteneurs d'onglets */
+        .cand-view {
+            display: none;
+        }
+
+        .cand-view.active {
+            display: block;
+            animation: fadeInTab 0.4s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+        }
+
+        @keyframes fadeInTab {
+            from {
+                opacity: 0;
+                transform: translateY(14px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Barre d'outils (actions) */
+        .cand-actions-bar {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .cand-action-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(0, 210, 255, 0.12);
+            color: var(--accent-primary);
+            border: 1px solid rgba(0, 210, 255, 0.3);
+            padding: 8px 18px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.25s ease;
+        }
+
+        .cand-action-btn:hover {
+            background: var(--accent-primary);
+            color: #0b132b;
+            box-shadow: 0 0 15px rgba(0, 210, 255, 0.4);
+            transform: translateY(-2px);
+        }
+
+        /* ─── STYLES CV ─── */
+        .cv-wrapper {
+            max-width: 210mm;
+            margin: 0 auto 50px;
+            background: var(--glass-bg);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border: 1px solid var(--glass-border);
+            border-radius: 16px;
+            box-shadow: var(--shadow-glow);
+            display: flex;
+            overflow: hidden;
+            color: var(--text-primary);
+        }
+
+        .cv-sidebar {
+            width: 35%;
+            background: rgba(0, 210, 255, 0.05);
+            border-right: 1px solid var(--glass-border);
+            padding: 40px 30px;
+        }
+
+        .cv-sidebar h2 {
+            color: var(--accent-primary);
+            font-size: 1.3em;
+            border-bottom: 1px solid rgba(0, 210, 255, 0.3);
+            padding-bottom: 8px;
+            margin-top: 30px;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .cv-sidebar h2:first-child {
+            margin-top: 0;
+        }
+
+        .cv-sidebar p, .cv-sidebar li {
+            font-size: 0.95em;
+            margin-bottom: 10px;
+            color: var(--text-secondary);
+            line-height: 1.5;
+        }
+
+        .cv-sidebar ul {
+            padding-left: 15px;
+            margin: 0;
+        }
+
+        .cv-main {
+            width: 65%;
+            padding: 40px 40px;
+        }
+
+        .cv-header {
+            border-left: 4px solid var(--accent-primary);
+            padding-left: 20px;
+            margin-bottom: 40px;
+        }
+
+        .cv-header h1 {
+            font-size: 2.8em;
+            margin: 0;
+            color: var(--text-primary);
+            letter-spacing: 1px;
+        }
+
+        .cv-header .cv-subtitle {
+            font-size: 1.2em;
+            font-weight: 600;
+            color: var(--accent-primary);
+            margin-top: 8px;
+        }
+
+        .cv-header .cv-objective {
+            font-size: 1em;
+            color: var(--text-secondary);
+            margin-top: 15px;
+            line-height: 1.6;
+            text-align: justify;
+        }
+
+        .cv-section-title {
+            font-size: 1.5em;
+            color: #fff;
+            border-bottom: 2px solid var(--accent-primary);
+            margin-top: 35px;
+            margin-bottom: 20px;
+            padding-bottom: 5px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .cv-item {
+            margin-bottom: 25px;
+        }
+
+        .cv-item-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 5px;
+            flex-wrap: wrap;
+        }
+
+        .cv-item-title {
+            font-size: 1.15em;
+            font-weight: 600;
+            color: var(--accent-primary);
+        }
+
+        .cv-item-date {
+            font-size: 0.9em;
+            color: #fff;
+            background: rgba(0, 210, 255, 0.15);
+            border: 1px solid rgba(0, 210, 255, 0.3);
+            padding: 4px 10px;
+            border-radius: 12px;
+            white-space: nowrap;
+        }
+
+        .cv-item-sub {
+            font-style: italic;
+            color: #fff;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .cv-item ul {
+            margin: 0;
+            padding-left: 20px;
+        }
+
+        .cv-item li {
+            color: var(--text-secondary);
+            margin-bottom: 6px;
+            font-size: 0.95em;
+            line-height: 1.5;
+        }
+
+        /* ─── STYLES LETTRE DE MOTIVATION ─── */
+        .lm-wrapper {
+            max-width: 820px;
+            margin: 0 auto 50px;
+            background: var(--glass-bg);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border: 1px solid var(--glass-border);
+            border-radius: 16px;
+            padding: 50px 60px;
+            box-shadow: var(--shadow-glow);
+            color: var(--text-primary);
+            line-height: 1.85;
+            font-size: 1.05em;
+        }
+
+        .lm-header {
+            margin-bottom: 35px;
+            border-bottom: 2px solid rgba(0, 210, 255, 0.3);
+            padding-bottom: 20px;
+        }
+
+        .lm-object {
+            font-weight: 700;
+            color: var(--accent-primary);
+            font-size: 1.25em;
+        }
+
+        .lm-content p {
+            margin-bottom: 20px;
+            color: var(--text-secondary);
+            text-align: justify;
+        }
+
+        .lm-content ul {
+            margin-bottom: 25px;
+            padding-left: 20px;
+        }
+
+        .lm-content li {
+            color: var(--text-secondary);
+            margin-bottom: 12px;
+            padding-left: 10px;
+        }
+
+        .lm-signature {
+            margin-top: 45px;
+            text-align: right;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 20px;
+        }
+
+        .lm-signature span {
+            display: block;
+            color: var(--accent-primary);
+            font-size: 1.35em;
+            font-weight: 700;
+            margin-top: 10px;
+            font-family: 'Georgia', serif;
+            letter-spacing: 1px;
+        }
+
+        /* ─── RESPONSIVE ─── */
+        @media (max-width: 768px) {
+            .cand-switch-container {
+                width: 100%;
+                justify-content: center;
+            }
+            .cand-tab-btn {
+                padding: 10px 18px;
+                font-size: 0.95rem;
+            }
+            .cv-wrapper {
+                flex-direction: column;
+            }
+            .cv-sidebar, .cv-main {
+                width: 100%;
+                padding: 30px 20px;
+            }
+            .cv-sidebar {
+                border-right: none;
+                border-bottom: 1px solid var(--glass-border);
+            }
+            .cv-item-header {
+                flex-direction: column;
+            }
+            .cv-item-date {
+                margin-top: 5px;
+                display: inline-block;
+            }
+            .lm-wrapper {
+                padding: 30px 20px;
+            }
+        }
+
+        /* Impression propre */
+        @media print {
+            nav, .cand-switch-container, .cand-actions-bar, footer, .water-waves, #stars-container {
+                display: none !important;
+            }
+            body {
+                background: white !important;
+                color: black !important;
+            }
+            .cand-view {
+                display: block !important;
+                opacity: 1 !important;
+                transform: none !important;
+            }
+            .cv-wrapper, .lm-wrapper {
+                border: none !important;
+                box-shadow: none !important;
+                background: white !important;
+                color: black !important;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <ul class="menu">
+            <li><a href="index.html">Accueil</a></li>
+            <li>
+                <a href="#">Mes Réalisations</a>
+                <ul>
+                    <li><a href="tp.html">TPs</a></li>
+                    <li><a href="stages.html">Stages</a></li>
+                </ul>
+            </li>
+            <li><a href="candidature.html" class="active">Candidature</a></li>
+            <li><a href="veille.html">Veille</a></li> 
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+    </nav>
+
+    <main class="container" style="padding-top: 40px; padding-bottom: 100px;">
+        
+        <header class="candidature-header">
+            <h1>Dossier de Candidature</h1>
+            <p>Retrouvez mon Curriculum Vitae et ma Lettre de Motivation réunis dans un seul et même espace interactif.</p>
+            
+            <!-- Sélecteur d'onglet -->
+            <div class="cand-switch-container" role="tablist">
+                <button type="button" class="cand-tab-btn active" id="tab-btn-cv" role="tab" aria-selected="true" onclick="switchCandidatureTab('cv')">
+                    <span class="tab-icon">📄</span> Curriculum Vitae
+                </button>
+                <button type="button" class="cand-tab-btn" id="tab-btn-lm" role="tab" aria-selected="false" onclick="switchCandidatureTab('lm')">
+                    <span class="tab-icon">✉️</span> Lettre de Motivation
+                </button>
+            </div>
+
+            <!-- Actions rapides -->
+            <div class="cand-actions-bar">
+                <button type="button" class="cand-action-btn" onclick="window.print()">
+                    <span>🖨️</span> Imprimer / Enregistrer en PDF
+                </button>
+                <a href="contact.html" class="cand-action-btn">
+                    <span>💬</span> Me Contacter
+                </a>
+            </div>
+        </header>
+
+        <!-- ==============================================
+             VUE 1 : CURRICULUM VITAE
+             ============================================== -->
+        <section id="view-cv" class="cand-view active" role="tabpanel">
+            <div class="cv-wrapper">
+                
+                <!-- Sidebar -->
+                <aside class="cv-sidebar">
+                    <h2>Profil</h2>
+                    <p>19 ans</p>
+                    
+                    <h2>Contact</h2>
+                    <p>📍 3 rue de la Catiche<br>80310 PICQUIGNY</p>
+                    <p>matteo.varlet2005@gmail.com</p>
+                    <p>🛡️ ASSR Niveau 2</p>
+                    
+                    <h2>Compétences</h2>
+                    <ul>
+                        <li>Office 365, Outlook</li>
+                        <li>PIX, Teams, Internet</li>
+                        <li>Sérieux et ponctuel</li>
+                        <li>Esprit d'équipe</li>
+                    </ul>
+                    
+                    <h2>Langues</h2>
+                    <p><b>Anglais (LV1) :</b> Courant</p>
+                    <p><b>Italien (LV2) :</b> Courant</p>
+                    
+                    <h2>Intérêts</h2>
+                    <ul>
+                        <li><b>Canoë-Kayak :</b> Pratique régulière (6 ans), Compétition N3, Pagaie Bleue.</li>
+                        <li><b>Encadrement :</b> Moniteur stagiaire fédéral (Amfpc).</li>
+                        <li>Gaming & Manga</li>
+                    </ul>
+                    
+                    <p style="font-size: 0.85em; margin-top: 40px; color: rgba(255,255,255,0.3); text-align: center;">JDC effectuée le 15/11/2023</p>
+                </aside>
+
+                <!-- Main Content -->
+                <div class="cv-main">
+                    <div class="cv-header">
+                        <h1>Mattéo VARLET</h1>
+                        <div class="cv-subtitle">Étudiant en BTS SIO (Services Informatiques aux Organisations)</div>
+                        <div class="cv-objective">
+                            Actuellement en 1ère année de BTS SIO, mon parcours est marqué par une solide polyvalence acquise lors d'une année en BUT GEA et diverses expériences de terrain. Je suis passionné par l'informatique et déterminé à développer mes compétences techniques au sein de projets innovants.
+                        </div>
+                    </div>
+                    
+                    <div class="cv-section-title">Formation / Diplômes</div>
+                    
+                    <div class="cv-item">
+                        <div class="cv-item-header">
+                            <span class="cv-item-title">BTS Services Informatiques aux Organisations (SIO)</span>
+                            <span class="cv-item-date">Sept. 2025 - Présent</span>
+                        </div>
+                        <span class="cv-item-sub">Lycée Saint-Rémi, Amiens</span>
+                    </div>
+                    
+                    <div class="cv-item">
+                        <div class="cv-item-header">
+                            <span class="cv-item-title">Diplôme de Moniteur Stagiaire Fédéral (AMFPC)</span>
+                            <span class="cv-item-date">Juin 2024</span>
+                        </div>
+                        <span class="cv-item-sub">Canoë-Kayak</span>
+                    </div>
+                    
+                    <div class="cv-item">
+                        <div class="cv-item-header">
+                            <span class="cv-item-title">BUT Gestion des Entreprises et des Administrations</span>
+                            <span class="cv-item-date">2023 - 2024</span>
+                        </div>
+                        <span class="cv-item-sub">IUT d'Amiens (1ère année validée)</span>
+                    </div>
+                    
+                    <div class="cv-item">
+                        <div class="cv-item-header">
+                            <span class="cv-item-title">Baccalauréat Technologique STMG</span>
+                            <span class="cv-item-date">Juin 2023</span>
+                        </div>
+                        <span class="cv-item-sub">Série Management et Gestion - Lycée La Hotoie, Amiens</span>
+                    </div>
+                    
+                    <div class="cv-section-title">Expériences Professionnelles</div>
+                    
+                    <div class="cv-item">
+                        <div class="cv-item-header">
+                            <span class="cv-item-title">Stage Informatique & Réseaux (BTS SIO)</span>
+                            <span class="cv-item-date">01 Juin - 26 Juin 2026</span>
+                        </div>
+                        <span class="cv-item-sub">EPSM de la Somme, Amiens (Service Informatique – 4 semaines)</span>
+                        <ul>
+                            <li>Configuration d'équipements réseau Cisco (switches, VLANs, routage).</li>
+                            <li>Audit, réorganisation complète et câblage propre de baies informatiques.</li>
+                            <li>Intervention terrain : repérage et étude des futurs plans réseau pour un bâtiment hospitalier en construction.</li>
+                            <li>Application rigoureuse de la méthodologie et pratique en environnement hospitalier critique.</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="cv-item">
+                        <div class="cv-item-header">
+                            <span class="cv-item-title">Service Civique</span>
+                            <span class="cv-item-date">Mars - Oct. 2025</span>
+                        </div>
+                        <span class="cv-item-sub">Base Nautique de Picquigny (7 mois)</span>
+                        <ul>
+                            <li>Accueil du public et participation aux forums de promotion.</li>
+                            <li>Aide à l'encadrement et gestion de la sécurité sur l'eau.</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="cv-item">
+                        <div class="cv-item-header">
+                            <span class="cv-item-title">Stage en Comptabilité</span>
+                            <span class="cv-item-date">Fév. - Mars 2024</span>
+                        </div>
+                        <span class="cv-item-sub">CAF de la Somme, Amiens (4 semaines)</span>
+                        <ul>
+                            <li>Traitement des flux financiers (chèques, virements).</li>
+                            <li>Rapprochement bancaire et mise à jour de tableaux de bord Excel.</li>
+                            <li>Observation de la gestion administrative et du management.</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="cv-item">
+                        <div class="cv-item-header">
+                            <span class="cv-item-title">Stage d'Observation (3ème)</span>
+                            <span class="cv-item-date">Févr. 2020</span>
+                        </div>
+                        <span class="cv-item-sub">Procter & Gamble, Amiens</span>
+                        <ul>
+                            <li>Découverte des protocoles de sécurité SEVESO.</li>
+                            <li>Tests qualité en laboratoire et suivi logistique.</li>
+                        </ul>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- ==============================================
+             VUE 2 : LETTRE DE MOTIVATION
+             ============================================== -->
+        <section id="view-lm" class="cand-view" role="tabpanel">
+            <article class="lm-wrapper">
+                <div class="lm-header">
+                    <div class="lm-object">Objet : Motivé pour rejoindre votre équipe</div>
+                </div>
+
+                <div class="lm-content">
+                    <p>Madame, Monsieur,</p>
+                    
+                    <p>Actuellement en BTS SIO, je ne cherche pas seulement à valider un diplôme, mais à mettre mon énergie et ma curiosité au service d'une entreprise qui bouge.</p>
+                    
+                    <p>Mon parcours est un peu atypique : j'ai commencé par la gestion (BUT GEA) avant de réaliser que ma place était dans l'informatique. Ce changement de cap prouve une chose : quand je m'engage dans une voie, c'est par choix et avec détermination.</p>
+                    
+                    <p>Ce qui me distingue ? Mon autonomie et mon esprit d'équipe, forgés sur le terrain :</p>
+                    <ul>
+                        <li><strong>7 mois de Service Civique</strong> à gérer du public et de la sécurité.</li>
+                        <li><strong>6 ans de Canoë-Kayak en compétition</strong>, où j'ai appris que la discipline et l'entraide sont les clés de la réussite.</li>
+                        <li><strong>Une expérience en comptabilité à la CAF</strong> qui m'a appris la rigueur et le sens du détail.</li>
+                    </ul>
+                    
+                    <p>Je ne prétends pas tout savoir, mais j'apprends vite, je suis ponctuel et je sais m'intégrer rapidement à une équipe. Je maîtrise déjà les outils collaboratifs classiques et j'ai hâte de passer à la vitesse supérieure sur des projets techniques.</p>
+                    
+                    <p>On en discute de vive voix ?</p>
+                </div>
+
+                <div class="lm-signature">
+                    Cordialement,
+                    <span>Mattéo VARLET</span>
+                </div>
+            </article>
+        </section>
+
+    </main>
+
+    <div class="water-waves">
+        <svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
+            <defs>
+                <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
+            </defs>
+            <g class="parallax">
+                <use xlink:href="#gentle-wave" x="48" y="0" fill="rgba(0, 210, 255, 0.7)" />
+                <use xlink:href="#gentle-wave" x="48" y="3" fill="rgba(0, 210, 255, 0.5)" />
+                <use xlink:href="#gentle-wave" x="48" y="5" fill="rgba(0, 210, 255, 0.3)" />
+                <use xlink:href="#gentle-wave" x="48" y="7" fill="rgba(0, 210, 255, 0.1)" />
+            </g>
+        </svg>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Mattéo Varlet | Étudiant en BTS SIO</p>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+    <script>
+        function switchCandidatureTab(tab) {
+            const btnCv = document.getElementById('tab-btn-cv');
+            const btnLm = document.getElementById('tab-btn-lm');
+            const viewCv = document.getElementById('view-cv');
+            const viewLm = document.getElementById('view-lm');
+
+            if (tab === 'lm') {
+                btnLm.classList.add('active');
+                btnLm.setAttribute('aria-selected', 'true');
+                btnCv.classList.remove('active');
+                btnCv.setAttribute('aria-selected', 'false');
+
+                viewCv.classList.remove('active');
+                viewLm.classList.add('active');
+                history.replaceState(null, null, '#lm');
+            } else {
+                btnCv.classList.add('active');
+                btnCv.setAttribute('aria-selected', 'true');
+                btnLm.classList.remove('active');
+                btnLm.setAttribute('aria-selected', 'false');
+
+                viewLm.classList.remove('active');
+                viewCv.classList.add('active');
+                history.replaceState(null, null, '#cv');
+            }
+        }
+
+        // Gestion de l'ancre URL (#lm ou #cv) au chargement
+        window.addEventListener('DOMContentLoaded', () => {
+            const hash = window.location.hash.toLowerCase();
+            if (hash === '#lm' || hash === '#lettre' || hash === '#lettre-motivation') {
+                switchCandidatureTab('lm');
+            } else {
+                switchCandidatureTab('cv');
+            }
+        });
+    </script>
+</body>
+</html>
